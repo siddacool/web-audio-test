@@ -1,15 +1,16 @@
 <template>
   <div class="home">
-    <h1>
-      Web audio test
-    </h1>
-    <br />
-    🚧 work in progress
+    <UploadAudio />
   </div>
 </template>
 
 <script>
+import UploadAudio from '../components/UploadAudio.vue';
+
 export default {
   name: 'Home',
+  components: {
+    UploadAudio,
+  },
 };
 </script>
