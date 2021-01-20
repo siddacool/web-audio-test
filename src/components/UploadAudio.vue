@@ -1,22 +1,48 @@
 <template>
-  <div class="upload-audio">
-    <input type="file" accept="audio/*" @change="fileUpload" />
-    <audio ref="audioPlayer" controls></audio>
-    {{ soundInfo }}
+  <div
+    class="upload-audio w-full h-full absolute top-0 left-0"
+    :class="sound && sound !== null ? 'z-m-10' : ''"
+  >
+    <div class="relative w-full h-full">
+      <input
+        type="file"
+        accept="audio/*"
+        @change="handleFileUpload"
+        class="absolute z-10 top-0 left-0 opacity-0 flex w-full h-full cursor-pointer"
+        id="upload-audio"
+      />
+      <div class="flex w-full h-full justify-center items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="90"
+          height="90"
+          viewBox="0 0 24 24"
+          class="fill-current text-gray-600 "
+        >
+          <path
+            d="M10 9h-6l8-9 8 9h-6v11h-4v-11zm11 11v2h-18v-2h-2v4h22v-4h-2z"
+          />
+        </svg>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   name: 'UploadAudio',
-  setup() {
+  props: {
+    sound: {
+      default: null,
+    },
+  },
+  emits: ['change'],
+  setup(props, context) {
     const store = useStore();
-    const audioPlayer = ref(null);
 
-    const fileUpload = e => {
+    const handleFileUpload = e => {
       const file =
         e.target && e.target.files && e.target.files.length
           ? e.target.files[0]
@@ -28,21 +54,16 @@ export default {
         return;
       }
 
-      const audioFile = URL.createObjectURL(file);
-
-      audioPlayer.value.src = audioFile;
-      audioPlayer.value.play();
-
       store.dispatch('fetchSoundInfo', {
         name,
         type,
       });
+
+      context.emit('change', URL.createObjectURL(file));
     };
 
     return {
-      fileUpload,
-      audioPlayer,
-      soundInfo: computed(() => store.state.soundInfo),
+      handleFileUpload,
     };
   },
 };
