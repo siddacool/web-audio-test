@@ -1,20 +1,20 @@
 <template>
   <div class="upload-audio">
     <input type="file" accept="audio/*" @change="fileUpload" />
-    <audio :src="sound" controls></audio>
+    <audio ref="audioPlayer" controls></audio>
     {{ soundInfo }}
   </div>
 </template>
 
 <script>
-import { ref, onUnmounted, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   name: 'UploadAudio',
   setup() {
     const store = useStore();
-    const sound = ref(null);
+    const audioPlayer = ref(null);
 
     const fileUpload = e => {
       const file =
@@ -30,20 +30,18 @@ export default {
 
       const audioFile = URL.createObjectURL(file);
 
-      sound.value = audioFile;
+      audioPlayer.value.src = audioFile;
+      audioPlayer.value.play();
+
       store.dispatch('fetchSoundInfo', {
         name,
         type,
       });
     };
 
-    onUnmounted(() => {
-      sound.value = null;
-    });
-
     return {
       fileUpload,
-      sound,
+      audioPlayer,
       soundInfo: computed(() => store.state.soundInfo),
     };
   },
