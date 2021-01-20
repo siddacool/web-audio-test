@@ -2,7 +2,11 @@ module.exports = {
   purge: { content: ['./public/**/*.html', './src/**/*.vue'] },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      zIndex: {
+        'm-10': '-10',
+      },
+    },
     fontFamily: {
       sans: '"Poppins", sans-serif',
     },
