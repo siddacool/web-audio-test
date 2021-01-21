@@ -17,7 +17,7 @@
           width="90"
           height="90"
           viewBox="0 0 24 24"
-          class="fill-current text-gray-600 "
+          class="fill-current text-gray-600 dark:text-gray-400"
         >
           <path
             d="M10 9h-6l8-9 8 9h-6v11h-4v-11zm11 11v2h-18v-2h-2v4h22v-4h-2z"

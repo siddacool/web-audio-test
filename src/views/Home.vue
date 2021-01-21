@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home relative bg-gray-100 flex flex-col justify-end lg:justify-center"
+    class="home relative bg-gray-100 dark:bg-gray-800 flex flex-col justify-end lg:justify-center"
   >
     <SettingsPanel />
     <UploadAudio @change="fileUpload" :sound="sound" />
