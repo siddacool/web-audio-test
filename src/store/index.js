@@ -17,7 +17,7 @@ export default createStore({
     fetchSoundInfo({ commit }, { name = '', type = '' }) {
       const nameArr = name && name.trim() !== '' ? name.split('.') : '';
       const formattedName =
-        nameArr && nameArr.length && nameArr[0] ? nameArr[0] : '';
+        nameArr && nameArr.length && nameArr[0] ? nameArr[0].slice(0, 50) : '';
       const ext =
         nameArr &&
         nameArr.length &&
