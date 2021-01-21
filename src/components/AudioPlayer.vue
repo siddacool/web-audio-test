@@ -31,7 +31,7 @@
         </div>
       </Button>
 
-      <span class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0">
+      <span class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0 text-gray-500">
         {{ soundInfo.name }}
       </span>
 
