@@ -5,10 +5,12 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import ThemeToggleButton from './ThemeToggleButton.vue';
 
-export default {
+export default defineComponent({
   name: 'SettingsPanel',
   components: { ThemeToggleButton },
-};
+});
 </script>

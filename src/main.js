@@ -4,6 +4,7 @@ import './registerServiceWorker';
 import store from './store';
 import './styles/tailwind.scss';
 
-createApp(App)
-  .use(store)
-  .mount('#app');
+const app = createApp(App);
+
+app.use(store);
+app.mount('#app');
