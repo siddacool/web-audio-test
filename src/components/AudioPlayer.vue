@@ -1,26 +1,29 @@
 <template>
-  <div class="audio-player relative">
+  <div class="audio-player">
     <audio
       ref="audioTag"
       :src="sound"
       @loadedmetadata="handleAudioLoaded"
       @timeupdate="handleTimeUpdate"
     ></audio>
-    <div
-      class="player max-h-64 flex flex-col lg:flex-row items-center bg-white dark:bg-gray-900 mx-auto lg:mb-40 p-4 rounded shadow"
-    >
-      <span
-        class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0 text-gray-500 dark:text-gray-400 lg:order-2"
+    <div class="player-container relative flex flex-col lg:block lg:mx-auto">
+      <Seeker />
+      <div
+        class="player w-full max-h-64 flex flex-col lg:flex-row items-center bg-white dark:bg-gray-900 lg:mb-40 p-4 rounded-b shadow"
       >
-        {{ soundInfo.name }}
-      </span>
-      <PlayToggleButton
-        @click="togglePlay"
-        :isPlaying="isPlaying"
-        class="lg:order-1"
-      />
+        <span
+          class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0 text-gray-500 dark:text-gray-400 lg:order-2"
+        >
+          {{ soundInfo.name }}
+        </span>
+        <PlayToggleButton
+          @click="togglePlay"
+          :isPlaying="isPlaying"
+          class="lg:order-1"
+        />
 
-      <LaunchUploadButton @click="launchUpload" class="lg:order-3" />
+        <LaunchUploadButton @click="launchUpload" class="lg:order-3" />
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +34,7 @@ import { useStore } from 'vuex';
 
 import PlayToggleButton from './PlayToggleButton.vue';
 import LaunchUploadButton from './LaunchUploadButton.vue';
+import Seeker from './Seeker.vue';
 
 export default defineComponent({
   name: 'AudioPlayer',
@@ -42,6 +46,7 @@ export default defineComponent({
   components: {
     PlayToggleButton,
     LaunchUploadButton,
+    Seeker,
   },
   setup() {
     const store = useStore();
@@ -78,7 +83,7 @@ export default defineComponent({
     const handleTimeUpdate = e => {
       const currentTime = Math.floor(e.target.currentTime);
       const duration = Math.floor(e.target.duration);
-      const seekPosition = ((currentTime * 100) / duration).toFixed(4);
+      const seekPosition = ((currentTime * 100) / duration).toFixed(6);
 
       store.dispatch('setSeekPosition', seekPosition);
     };
@@ -91,7 +96,6 @@ export default defineComponent({
       launchUpload,
       handleAudioLoaded,
       handleTimeUpdate,
-      seekPosition: computed(() => store.state.seekPosition),
     };
   },
 });
@@ -99,8 +103,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .audio-player {
-  .player {
-    max-width: 600px;
+  .player-container {
+    height: 100vh;
+
+    @media (min-width: 1024px) {
+      height: initial;
+      max-width: 600px;
+    }
   }
 }
 </style>
