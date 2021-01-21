@@ -1,6 +1,11 @@
 <template>
   <div class="audio-player relative">
-    <audio ref="audioTag" :src="sound"></audio>
+    <audio
+      ref="audioTag"
+      :src="sound"
+      @loadedmetadata="handleAudioLoaded"
+      @timeupdate="handleTimeUpdate"
+    ></audio>
     <div
       class="player max-h-64 flex flex-col lg:flex-row items-center bg-white dark:bg-gray-900 mx-auto lg:mb-40 p-4 rounded shadow"
     >
@@ -66,12 +71,27 @@ export default defineComponent({
       uploadAudioInput.click();
     };
 
+    const handleAudioLoaded = e => {
+      store.dispatch('setDuration', e.target.duration);
+    };
+
+    const handleTimeUpdate = e => {
+      const currentTime = Math.floor(e.target.currentTime);
+      const duration = Math.floor(e.target.duration);
+      const seekPosition = ((currentTime * 100) / duration).toFixed(4);
+
+      store.dispatch('setSeekPosition', seekPosition);
+    };
+
     return {
       audioTag,
       togglePlay,
       isPlaying,
       soundInfo: computed(() => store.state.soundInfo),
       launchUpload,
+      handleAudioLoaded,
+      handleTimeUpdate,
+      seekPosition: computed(() => store.state.seekPosition),
     };
   },
 });

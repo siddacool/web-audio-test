@@ -16,6 +16,8 @@ export default createStore({
       ext: '',
     },
     isDarkTheme: checkIfDarkTheme(),
+    duration: 0,
+    seekPosition: 0,
   },
   mutations: {
     fetchSoundInfo(state, soundInfo) {
@@ -23,6 +25,12 @@ export default createStore({
     },
     setTheme(state, isDarkTheme) {
       state.isDarkTheme = isDarkTheme;
+    },
+    setDuration(state, duration) {
+      state.duration = duration;
+    },
+    setSeekPosition(state, seekPosition) {
+      state.seekPosition = seekPosition;
     },
   },
   actions: {
@@ -46,6 +54,12 @@ export default createStore({
     },
     setTheme({ commit }) {
       commit('setTheme', checkIfDarkTheme());
+    },
+    setDuration({ commit }, duration) {
+      commit('setDuration', duration);
+    },
+    setSeekPosition({ commit }, seekPosition) {
+      commit('setSeekPosition', seekPosition);
     },
   },
   modules: {},
