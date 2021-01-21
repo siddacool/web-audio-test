@@ -1,10 +1,11 @@
 <template>
   <div
-    class="seeker flex-1 w-full shadow lg:rounded-t lg:h-28 bg-gray-200 dark:bg-gray-600"
+    class="seeker flex-1 w-full shadow lg:rounded-t lg:h-28 dark:bg-gray-700"
   >
     <div
-      class="seek h-full bg-gray-300 dark:bg-gray-500"
+      class="seek h-full bg-gray-300 dark:bg-gray-600"
       :style="`width: ${seekPosition}%`"
+      v-if="seekPosition"
     ></div>
   </div>
 </template>
