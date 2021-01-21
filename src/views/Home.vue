@@ -3,8 +3,8 @@
     class="home relative bg-gray-100 dark:bg-gray-800 flex flex-col justify-end lg:justify-center"
   >
     <SettingsPanel />
+    <AudioPlayer :sound="sound" v-if="sound" />
     <UploadAudio @change="fileUpload" :sound="sound" />
-    <AudioPlayer :sound="sound" />
   </div>
 </template>
 
