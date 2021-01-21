@@ -4,14 +4,18 @@
     <div
       class="player max-h-64 flex flex-col lg:flex-row items-center bg-white dark:bg-gray-900 mx-auto lg:mb-40 p-4 rounded shadow"
     >
-      <PlayToggleButton @click="togglePlay" :isPlaying="isPlaying" />
       <span
-        class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0 text-gray-500 dark:text-gray-400"
+        class="mt-4 mb-4 lg:ml-6 lg:mt-0 lg:mb-0 text-gray-500 dark:text-gray-400 lg:order-2"
       >
         {{ soundInfo.name }}
       </span>
+      <PlayToggleButton
+        @click="togglePlay"
+        :isPlaying="isPlaying"
+        class="lg:order-1"
+      />
 
-      <LaunchUploadButton @click="launchUpload" />
+      <LaunchUploadButton @click="launchUpload" class="lg:order-3" />
     </div>
   </div>
 </template>
