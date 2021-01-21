@@ -10,6 +10,8 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
+
 import AudioPlayer from '../components/AudioPlayer.vue';
 import UploadAudio from '../components/UploadAudio.vue';
 import SettingsPanel from '../components/SettingsPanel.vue';
@@ -23,6 +25,7 @@ export default {
     SettingsPanel,
   },
   setup() {
+    const store = useStore();
     const sound = ref(null);
 
     const fileUpload = audio => {
@@ -31,6 +34,7 @@ export default {
 
     onMounted(() => {
       setThemeFromCookie();
+      store.dispatch('setTheme');
     });
 
     return {

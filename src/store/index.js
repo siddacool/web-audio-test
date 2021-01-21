@@ -1,5 +1,13 @@
 import { createStore } from 'vuex';
 
+import { getStorage } from '../helpers/storage';
+
+const checkIfDarkTheme = () => {
+  const { darkTheme = false } = getStorage();
+
+  return darkTheme;
+};
+
 export default createStore({
   state: {
     soundInfo: {
@@ -7,10 +15,14 @@ export default createStore({
       type: '',
       ext: '',
     },
+    isDarkTheme: checkIfDarkTheme(),
   },
   mutations: {
     fetchSoundInfo(state, soundInfo) {
       state.soundInfo = soundInfo;
+    },
+    setTheme(state, isDarkTheme) {
+      state.isDarkTheme = isDarkTheme;
     },
   },
   actions: {
@@ -31,6 +43,9 @@ export default createStore({
         ext,
         type,
       });
+    },
+    setTheme({ commit }) {
+      commit('setTheme', checkIfDarkTheme());
     },
   },
   modules: {},
