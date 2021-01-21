@@ -50,7 +50,7 @@ export default {
 
       const { name = '', type = '' } = file || {};
 
-      if (file === null || !type.startsWith('audio')) {
+      if (file === null) {
         return;
       }
 
