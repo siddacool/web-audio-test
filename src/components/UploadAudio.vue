@@ -60,6 +60,9 @@ export default defineComponent({
         type,
       });
 
+      store.dispatch('setDuration', 0);
+      store.dispatch('setSeekPosition', 0);
+
       context.emit('change', URL.createObjectURL(file));
     };
 

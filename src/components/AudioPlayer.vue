@@ -73,6 +73,9 @@ export default defineComponent({
       audioTag.value.pause();
       isPlaying.value = false;
 
+      store.dispatch('setDuration', 0);
+      store.dispatch('setSeekPosition', 0);
+
       uploadAudioInput.click();
     };
 
@@ -86,6 +89,15 @@ export default defineComponent({
       const seekPosition = ((currentTime * 100) / duration).toFixed(6);
 
       store.dispatch('setSeekPosition', seekPosition);
+
+      if (e.target.currentTime >= e.target.duration) {
+        isPlaying.value = false;
+
+        audioTag.value.currentTime = 0;
+
+        store.dispatch('setDuration', 0);
+        store.dispatch('setSeekPosition', 0);
+      }
     };
 
     return {

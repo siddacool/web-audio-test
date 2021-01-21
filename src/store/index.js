@@ -59,7 +59,11 @@ export default createStore({
       commit('setDuration', duration);
     },
     setSeekPosition({ commit }, seekPosition) {
-      commit('setSeekPosition', seekPosition);
+      if (isNaN(seekPosition)) {
+        commit('setSeekPosition', 0);
+      } else {
+        commit('setSeekPosition', seekPosition);
+      }
     },
   },
   modules: {},
