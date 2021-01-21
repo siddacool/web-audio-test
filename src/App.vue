@@ -3,14 +3,16 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import HomeView from './views/Home.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     HomeView,
   },
-};
+});
 </script>
 
 <style lang="scss">

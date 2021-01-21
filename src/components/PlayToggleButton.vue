@@ -30,9 +30,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Button from './Button.vue';
 
-export default {
+export default defineComponent({
   name: 'PlayToggleButton',
   props: {
     isPlaying: {
@@ -53,5 +55,5 @@ export default {
       handleTogglePlay,
     };
   },
-};
+});
 </script>

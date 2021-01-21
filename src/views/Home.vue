@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
 import AudioPlayer from '../components/AudioPlayer.vue';
@@ -17,7 +17,7 @@ import UploadAudio from '../components/UploadAudio.vue';
 import SettingsPanel from '../components/SettingsPanel.vue';
 import { setThemeFromCookie } from '../helpers/theme';
 
-export default {
+export default defineComponent({
   name: 'Home',
   components: {
     AudioPlayer,
@@ -42,7 +42,7 @@ export default {
       fileUpload,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
 import Button from './Button.vue';
 import { toggleTheme } from '../helpers/theme';
 
-export default {
+export default defineComponent({
   name: 'ThemeToggleButton',
   components: {
     Button,
@@ -54,5 +54,5 @@ export default {
       isDarkTheme: computed(() => store.state.isDarkTheme),
     };
   },
-};
+});
 </script>

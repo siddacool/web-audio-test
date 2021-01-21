@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
 import PlayToggleButton from './PlayToggleButton.vue';
 import LaunchUploadButton from './LaunchUploadButton.vue';
 
-export default {
+export default defineComponent({
   name: 'AudioPlayer',
   props: {
     sound: {
@@ -74,7 +74,7 @@ export default {
       launchUpload,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

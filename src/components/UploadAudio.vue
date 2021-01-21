@@ -29,9 +29,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'UploadAudio',
   props: {
     sound: {
@@ -66,5 +67,5 @@ export default {
       handleFileUpload,
     };
   },
-};
+});
 </script>
